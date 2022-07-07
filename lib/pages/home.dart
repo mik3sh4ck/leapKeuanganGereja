@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, TODO
+
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,10 +13,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red.withOpacity(0.3),
       body: SafeArea(
-        child: Expanded(
-          child: Container(),
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: Center(
+            child: Text('This Is Home'),
+          ),
         ),
       ),
     );

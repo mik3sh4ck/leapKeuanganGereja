@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, TODO
+
 import 'package:flutter/material.dart';
 
 class MemberPage extends StatefulWidget {
@@ -11,10 +13,12 @@ class _MemberPageState extends State<MemberPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue.withOpacity(0.3),
       body: SafeArea(
-        child: Expanded(
-          child: Container(),
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: Center(
+            child: Text('This Is Member'),
+          ),
         ),
       ),
     );

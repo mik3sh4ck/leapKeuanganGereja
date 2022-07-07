@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, TODO
+
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -11,10 +13,16 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SafeArea(
-        child: Expanded(
-          child: Container(),
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: Center(
+            child: Text('This Is Profile'),
+          ),
         ),
       ),
     );

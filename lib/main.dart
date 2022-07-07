@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:keuangan_gereja/pages/home.dart';
 import 'package:keuangan_gereja/pages/inputkeuangan.dart';
 import 'package:keuangan_gereja/pages/member.dart';
+import 'package:keuangan_gereja/pages/profile.dart';
 import 'package:keuangan_gereja/themes/color.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -87,7 +88,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
             extendedTheme: const SidebarXTheme(
-              width: 200,
+              width: 160,
               decoration: BoxDecoration(
                 color: canvasColor,
               ),
@@ -95,12 +96,23 @@ class _MyAppState extends State<MyApp> {
             ),
             footerDivider: divider,
             headerBuilder: (context, extended) {
-              return SizedBox(
-                height: 100,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
-                  backgroundColor: Colors.transparent,
+              return GestureDetector(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(),
+                  ),
+                ),
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: Padding(
+                    padding: EdgeInsets.all(400),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(360),
+                      child: Image.network(
+                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                    ),
+                  ),
                 ),
               );
             },

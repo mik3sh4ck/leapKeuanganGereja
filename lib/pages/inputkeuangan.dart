@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, TODO
+
 import 'package:flutter/material.dart';
 
 class InputKeuanganPage extends StatefulWidget {
@@ -11,10 +13,12 @@ class _InputKeuanganPageState extends State<InputKeuanganPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.withOpacity(0.3),
       body: SafeArea(
-        child: Expanded(
-          child: Container(),
+        child: Container(
+          padding: EdgeInsets.all(12),
+          child: Center(
+            child: Text('This Is Keuangan'),
+          ),
         ),
       ),
     );
