@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, TODO
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:keuangan_gereja/pages/home.dart';
 import 'package:keuangan_gereja/pages/inputkeuangan.dart';
+import 'package:keuangan_gereja/pages/login.dart';
 import 'package:keuangan_gereja/pages/member.dart';
 import 'package:keuangan_gereja/pages/profile.dart';
 import 'package:keuangan_gereja/themes/color.dart';
@@ -12,27 +14,29 @@ import 'package:sidebarx/sidebarx.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
-    ),
-  );
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
-  ]).then(
-    (value) => runApp(
-      MaterialApp(
-        title: 'Keuangan Gereja',
-        home: MyApp(),
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: primaryColor,
-          canvasColor: canvasColor,
-          scaffoldBackgroundColor: scaffoldBackgroundColor,
-        ),
+  if (!kIsWeb) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+      ),
+    );
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+    ]);
+  }
+
+  runApp(
+    MaterialApp(
+      title: 'Keuangan Gereja',
+      home: LoginPage(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: primaryColor,
+        canvasColor: canvasColor,
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
       ),
     ),
   );
@@ -47,6 +51,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _sidebarController = SidebarXController(selectedIndex: 0);
   final divider = Divider(color: Colors.white.withOpacity(0.3), height: 1);
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +72,10 @@ class _MyAppState extends State<MyApp> {
           SidebarX(
             controller: _sidebarController,
             theme: SidebarXTheme(
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(0),
               decoration: BoxDecoration(
                 color: canvasColor,
-                borderRadius: BorderRadius.circular(15),
+                // borderRadius: BorderRadius.circular(15),
               ),
               textStyle: TextStyle(color: Colors.white),
               selectedTextStyle: TextStyle(color: Colors.white),
@@ -92,7 +109,6 @@ class _MyAppState extends State<MyApp> {
               decoration: BoxDecoration(
                 color: canvasColor,
               ),
-              margin: EdgeInsets.only(right: 10),
             ),
             footerDivider: divider,
             headerBuilder: (context, extended) {
@@ -116,13 +132,10 @@ class _MyAppState extends State<MyApp> {
                 ),
               );
             },
-            items: [
+            items: const [
               SidebarXItem(
                 icon: Icons.home_rounded,
                 label: 'Home',
-                onTap: () {
-                  debugPrint('Hello');
-                },
               ),
               SidebarXItem(
                 icon: Icons.wallet_rounded,
@@ -149,21 +162,36 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class _ScreenRoute extends StatelessWidget {
+class _ScreenRoute extends StatefulWidget {
+  final SidebarXController controller;
   const _ScreenRoute({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
-  final SidebarXController controller;
+  @override
+  State<_ScreenRoute> createState() => __ScreenRouteState();
+}
+
+class __ScreenRouteState extends State<_ScreenRoute> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return AnimatedBuilder(
-      animation: controller,
+      animation: widget.controller,
       builder: (context, child) {
-        switch (controller.selectedIndex) {
+        switch (widget.controller.selectedIndex) {
           case 0:
             return HomePage();
           case 1:
@@ -171,7 +199,7 @@ class _ScreenRoute extends StatelessWidget {
           case 2:
             return MemberPage();
           default:
-            return Text('Unknown Page', style: theme.textTheme.headline5);
+            return Text('Unknown Page');
         }
       },
     );
