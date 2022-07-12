@@ -132,7 +132,7 @@ class _MyAppState extends State<MyApp> {
                 ),
               );
             },
-            items: const [
+            items: [
               SidebarXItem(
                 icon: Icons.home_rounded,
                 label: 'Home',
@@ -145,7 +145,19 @@ class _MyAppState extends State<MyApp> {
                 icon: Icons.people,
                 label: 'Member',
               ),
+              // SidebarXItem(
+              //   icon: Icons.inbox_rounded,
+              //   label: 'Donate',
+              // ),
               SidebarXItem(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPage(),
+                      ),
+                      (route) => false);
+                },
                 icon: Icons.logout_rounded,
                 label: 'Log Out',
               ),

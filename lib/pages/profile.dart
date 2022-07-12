@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, TODO
 
 import 'package:flutter/material.dart';
+import 'package:keuangan_gereja/themes/color.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -13,16 +14,44 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      extendBodyBehindAppBar: true,
       body: SafeArea(
-        child: Container(
-          padding: EdgeInsets.all(12),
-          child: Center(
-            child: Text('This Is Profile'),
-          ),
+        child: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: const [
+                    scaffoldBackgroundColor,
+                    canvasColor,
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: white,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.all(12),
+                child: Column(),
+              ),
+            )
+          ],
         ),
       ),
     );

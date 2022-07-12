@@ -20,6 +20,7 @@ class _MemberPageState extends State<MemberPage> {
         centerTitle: true,
         backgroundColor: canvasColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Container(
