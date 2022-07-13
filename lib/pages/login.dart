@@ -1,10 +1,11 @@
-// ignore_for_file: prefer_const_constructors, TODO, prefer_const_literals_to_create_immutables, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, TODO, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:keuangan_gereja/main.dart';
-import 'package:keuangan_gereja/themes/color.dart';
-import 'package:keuangan_gereja/widgets/tween.dart';
+import 'package:keuangan_gereja/pages/register.dart';
+import 'package:keuangan_gereja/widgets/ClipPath.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,18 +15,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool _passwordVisible = true;
+
   final _controllerEmail = TextEditingController();
   final _controllerPassword = TextEditingController();
-
-  bool _passwordVisibility = true;
-
-  void _ShowHidePasswordLogin() {
-    setState(
-      () {
-        _passwordVisibility = !_passwordVisibility;
-      },
-    );
-  }
 
   @override
   void initState() {
@@ -42,275 +35,368 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  void _passwordVisibility() {
+    if (mounted) {
+      setState(() {
+        _passwordVisible = !_passwordVisible;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    scaffoldBackgroundColor,
-                    canvasColor,
-                  ],
-                ),
-              ),
-            ),
-            ClipPath(
-              clipper: LoginCustomClipPath1(),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Color(0xFFfca927),
-              ),
-            ),
-            ClipPath(
-              clipper: LoginCustomClipPath2(),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                color: Color(0xFFffde59),
-              ),
-            ),
-            SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(40, 80, 40, 80),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //TODO: Login
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 50),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ShakesAnimation(
-                            offset: 100,
-                            child: Text(
-                              "Welcome Back",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 40,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Color(0xFFffffff),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(0),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Positioned(
+                    right: 0,
+                    bottom: -48,
+                    child: Image(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      image: AssetImage('lib/assets/images/loginbgimg.png'),
                     ),
-                    //TODO: Email
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      child: ShakesAnimation(
-                        offset: 125,
-                        axis: Axis.vertical,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.fastOutSlowIn,
-                        child: Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          child: TextFormField(
-                            validator: (email) =>
-                                email != null && !EmailValidator.validate(email)
-                                    ? "Enter a valid email"
-                                    : null,
-                            controller: _controllerEmail,
-                            style: (TextStyle(
-                              color: Colors.grey,
-                            )),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: actionColor,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              label: Text(
-                                "Email",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                  ),
+                  ClipPath(
+                    clipper: LoginRegisCustomClipPath1(),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      color: Color(0xFFfca927),
                     ),
-                    //TODO: Password
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      child: ShakesAnimation(
-                        offset: 150,
-                        axis: Axis.vertical,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.fastOutSlowIn,
-                        child: Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value != null && value.length < 6) {
-                                return 'Enter min 6 characters password';
-                              } else {
-                                return null;
-                              }
-                            },
-                            controller: _controllerPassword,
-                            obscureText: _passwordVisibility,
-                            style: (TextStyle(
-                              color: Colors.grey,
-                            )),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: actionColor,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              label: Text(
-                                "Password",
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.grey,
-                              ),
-                              suffixIcon: IconButton(
-                                splashColor: Colors.transparent,
-                                icon: Icon(
-                                  _passwordVisibility == true
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.grey,
-                                ),
-                                onPressed: () {
-                                  _ShowHidePasswordLogin();
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                  ),
+                  ClipPath(
+                    clipper: LoginRegisCustomClipPath2(),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      color: Color(0xFFffde59),
                     ),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      child: ShakesAnimation(
-                        offset: 200,
-                        axis: Axis.vertical,
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.fastOutSlowIn,
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 50,
-                          child: DecoratedBox(
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(style: BorderStyle.none, width: 0),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary: actionColor,
-                              ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(
+                        bottom: 50,
+                        top: (MediaQuery.of(context).size.height * 0.1442857) +
+                            50),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        //TODO: Welcome
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 40),
                               child: Text(
-                                "LOG IN",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20),
-                              ),
-                              onPressed: () {
-                                //TODO SignIn Auth
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => MyApp(),
+                                "Selamat Datang!",
+                                style: GoogleFonts.nunito(
+                                  textStyle: TextStyle(
+                                    color: Color.fromARGB(255, 27, 27, 27),
+                                    fontSize: 56,
+                                    fontWeight: FontWeight.w900,
                                   ),
-                                );
-                              },
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ),
+
+                        SizedBox(
+                          height: 25,
+                        ),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(left: 40),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  //TODO: Email
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          "Email",
+                                          style: GoogleFonts.nunito(
+                                            textStyle: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 27, 27, 27),
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 5),
+                                        child: SizedBox(
+                                          width: (MediaQuery.of(context)
+                                                  .size
+                                                  .width) *
+                                              0.4,
+                                          child: Form(
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                            child: TextFormField(
+                                              validator: (value) => value !=
+                                                          null &&
+                                                      !EmailValidator.validate(
+                                                          value)
+                                                  ? "Masukkan email yang benar"
+                                                  : null,
+                                              controller: _controllerEmail,
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFeead48),
+                                                  ),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFfade70),
+                                                  ),
+                                                ),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFfade70),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  //TODO: Password
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Text(
+                                          "Password",
+                                          style: GoogleFonts.nunito(
+                                            textStyle: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 27, 27, 27),
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 5),
+                                        child: SizedBox(
+                                          width: (MediaQuery.of(context)
+                                                  .size
+                                                  .width) *
+                                              0.4,
+                                          child: Form(
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                            child: TextFormField(
+                                              validator: (value) =>
+                                                  value != null &&
+                                                          value.length < 6
+                                                      ? "Password kurang dari 6"
+                                                      : null,
+                                              textAlignVertical:
+                                                  TextAlignVertical.center,
+                                              controller: _controllerPassword,
+                                              obscureText: _passwordVisible,
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white,
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFeead48),
+                                                  ),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFfade70),
+                                                  ),
+                                                ),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  borderSide: BorderSide(
+                                                    color: Color(0xFFfade70),
+                                                  ),
+                                                ),
+                                                suffixIcon: IconButton(
+                                                  color: Color(0xFFeead48),
+                                                  onPressed: () {
+                                                    _passwordVisibility();
+                                                  },
+                                                  icon: Icon(_passwordVisible ==
+                                                          true
+                                                      ? Icons.visibility
+                                                      : Icons.visibility_off),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  //TODO: Button Login
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          shape: StadiumBorder(),
+                                          primary: Color(0xFFeead49),
+                                          minimumSize: Size(
+                                              (MediaQuery.of(context)
+                                                      .size
+                                                      .width) *
+                                                  0.2,
+                                              35),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => MyApp(),
+                                            ),
+                                          );
+                                        },
+                                        child: Text(
+                                          'MASUK',
+                                          style: GoogleFonts.nunito(
+                                            textStyle: TextStyle(
+                                              color: Color(0xFFffffed),
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: (MediaQuery.of(context)
+                                                .size
+                                                .width) *
+                                            0.4,
+                                      ),
+                                    ],
+                                  ),
+
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+
+                                  //TODO: Sign Up
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Belum ada akun? ",
+                                            style: GoogleFonts.nunito(
+                                              textStyle: TextStyle(),
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      RegisterPage(),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Daftar ',
+                                              style: GoogleFonts.nunito(
+                                                textStyle: TextStyle(
+                                                  color: Color(0xFFeead49),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w900,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "disini",
+                                            style: GoogleFonts.nunito(
+                                              textStyle: TextStyle(),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        width: (MediaQuery.of(context)
+                                                .size
+                                                .width) *
+                                            0.4,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
-  }
-}
-
-class LoginCustomClipPath1 extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(0, size.height * 0.1442857);
-    path.quadraticBezierTo(size.width * 0.1781250, size.height * 0.2050000,
-        size.width * 0.3766667, size.height * 0.1628571);
-    path.cubicTo(
-        size.width * 0.5083333,
-        size.height * 0.1264286,
-        size.width * 0.5183333,
-        size.height * 0.1078571,
-        size.width * 0.7100000,
-        size.height * 0.0757143);
-    path.quadraticBezierTo(size.width * 0.9027083, size.height * 0.0625000,
-        size.width, size.height * 0.1028571);
-    path.lineTo(size.width, 0);
-    path.lineTo(0, 0);
-
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
-    // TODO: implement shouldReclip
-  }
-}
-
-class LoginCustomClipPath2 extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    path.moveTo(0, 0);
-    path.lineTo(0, size.height * 0.1114286);
-    path.quadraticBezierTo(size.width * 0.1772917, size.height * 0.1835714,
-        size.width * 0.3758333, size.height * 0.1414286);
-    path.cubicTo(
-        size.width * 0.5075000,
-        size.height * 0.1050000,
-        size.width * 0.5250000,
-        size.height * 0.1007143,
-        size.width * 0.7083333,
-        size.height * 0.0642857);
-    path.quadraticBezierTo(size.width * 0.8735417, size.height * 0.0496429,
-        size.width, size.height * 0.0800000);
-    path.lineTo(size.width, 0);
-    path.lineTo(0, 0);
-
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false;
-    // TODO: implement shouldReclip
   }
 }

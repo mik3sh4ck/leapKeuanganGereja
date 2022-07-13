@@ -50,7 +50,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _sidebarController = SidebarXController(selectedIndex: 0);
-  final divider = Divider(color: Colors.white.withOpacity(0.3), height: 1);
+  final divider = Divider(color: actionColor.withOpacity(0.5), height: 1);
 
   @override
   void dispose() {
@@ -81,30 +81,28 @@ class _MyAppState extends State<MyApp> {
               selectedTextStyle: TextStyle(color: Colors.white),
               itemTextPadding: EdgeInsets.only(left: 30),
               selectedItemTextPadding: EdgeInsets.only(left: 30),
-              itemDecoration: BoxDecoration(
-                border: Border.all(color: canvasColor),
-              ),
               selectedItemDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  color: actionColor.withOpacity(0.37),
-                ),
-                gradient: const LinearGradient(
-                  colors: [accentCanvasColor, canvasColor],
+                border: Border.all(color: Colors.transparent),
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF806435).withOpacity(0.2),
+                    Color(0xFF806435).withOpacity(0.2),
+                  ],
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.28),
-                    blurRadius: 30,
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 6,
                   )
                 ],
               ),
-              iconTheme: const IconThemeData(
+              iconTheme: IconThemeData(
                 color: Colors.white,
                 size: 20,
               ),
             ),
-            extendedTheme: const SidebarXTheme(
+            extendedTheme: SidebarXTheme(
               width: 160,
               decoration: BoxDecoration(
                 color: canvasColor,
@@ -145,10 +143,14 @@ class _MyAppState extends State<MyApp> {
                 icon: Icons.people,
                 label: 'Member',
               ),
-              // SidebarXItem(
-              //   icon: Icons.inbox_rounded,
-              //   label: 'Donate',
-              // ),
+              SidebarXItem(
+                icon: Icons.inbox_rounded,
+                label: 'Donate',
+              ),
+              SidebarXItem(
+                icon: Icons.list_rounded,
+                label: 'Activity',
+              ),
               SidebarXItem(
                 onTap: () {
                   Navigator.pushAndRemoveUntil(
