@@ -3,6 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keuangan_gereja/pages/donation.dart';
 import 'package:keuangan_gereja/pages/home.dart';
 import 'package:keuangan_gereja/pages/inputkeuangan.dart';
 import 'package:keuangan_gereja/pages/login.dart';
@@ -182,8 +183,8 @@ class _MyAppState extends State<MyApp> {
                     padding: EdgeInsets.all(500),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(360),
-                      child: Image.network(
-                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                      child: Image.asset(
+                        'lib/assets/images/defprofileimg.png',
                       ),
                     ),
                   ),
@@ -272,6 +273,10 @@ class __ScreenRouteState extends State<_ScreenRoute> {
             return InputKeuanganPage();
           case 2:
             return MemberPage();
+          case 3:
+            return DonationPage();
+          // case 4:
+          //   return
           default:
             return Text('Unknown Page');
         }
