@@ -31,7 +31,7 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Keuangan Gereja',
-      home: LoginPage(),
+      home: MyApp(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: primaryColor,
@@ -77,8 +77,17 @@ class _MyAppState extends State<MyApp> {
                 color: canvasColor,
                 // borderRadius: BorderRadius.circular(15),
               ),
-              textStyle: TextStyle(color: Colors.white),
-              selectedTextStyle: TextStyle(color: Colors.white),
+
+              textStyle: TextStyle(
+                color: Color(0xFF80633d),
+              ),
+              selectedTextStyle: TextStyle(
+                color: Color(0xFF392f09),
+              ),
+              selectedIconTheme: const IconThemeData(
+                color: Color(0xFF392f09),
+                size: 20,
+              ),
               itemTextPadding: EdgeInsets.only(left: 30),
               selectedItemTextPadding: EdgeInsets.only(left: 30),
               selectedItemDecoration: BoxDecoration(
@@ -86,8 +95,8 @@ class _MyAppState extends State<MyApp> {
                 border: Border.all(color: Colors.transparent),
                 gradient: LinearGradient(
                   colors: [
-                    Color(0xFF806435).withOpacity(0.2),
-                    Color(0xFF806435).withOpacity(0.2),
+                    Color(0xFFFFFFFF).withOpacity(0.42),
+                    Color(0xFFFFFFFF).withOpacity(0.42),
                   ],
                 ),
                 boxShadow: [
@@ -98,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
               iconTheme: IconThemeData(
-                color: Colors.white,
+                color: Color(0xFF80633d),
                 size: 20,
               ),
             ),
@@ -137,7 +146,7 @@ class _MyAppState extends State<MyApp> {
               ),
               SidebarXItem(
                 icon: Icons.wallet_rounded,
-                label: 'Keuangan',
+                label: 'Transaksi',
               ),
               SidebarXItem(
                 icon: Icons.people,
