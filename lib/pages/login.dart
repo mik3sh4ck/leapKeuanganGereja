@@ -83,312 +83,322 @@ class _LoginPageState extends State<LoginPage> {
                       color: Color(0xFFffde59),
                     ),
                   ),
-                  Container(
-                    padding: EdgeInsets.only(
-                        bottom: 50,
-                        top: (MediaQuery.of(context).size.height * 0.1442857) +
-                            50),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //TODO: Welcome
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 40),
-                              child: Text(
-                                "Selamat Datang!",
-                                style: GoogleFonts.nunito(
-                                  textStyle: TextStyle(
-                                    color: Color.fromARGB(255, 27, 27, 27),
-                                    fontSize: 56,
-                                    fontWeight: FontWeight.w900,
+                  FittedBox(
+                    child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: 50,
+                          top:
+                              (MediaQuery.of(context).size.height * 0.1442857) +
+                                  50),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          //TODO: Welcome
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 40),
+                                child: Text(
+                                  "Selamat Datang!",
+                                  style: GoogleFonts.nunito(
+                                    textStyle: TextStyle(
+                                      color: Color.fromARGB(255, 27, 27, 27),
+                                      fontSize: 56,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
 
-                        SizedBox(
-                          height: 25,
-                        ),
+                          SizedBox(
+                            height: 25,
+                          ),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(left: 40),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  //TODO: Email
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Email",
-                                          style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 27, 27, 27),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 5),
-                                        child: SizedBox(
-                                          width: (MediaQuery.of(context)
-                                                  .size
-                                                  .width) *
-                                              0.4,
-                                          child: Form(
-                                            autovalidateMode: AutovalidateMode
-                                                .onUserInteraction,
-                                            child: TextFormField(
-                                              validator: (value) => value !=
-                                                          null &&
-                                                      !EmailValidator.validate(
-                                                          value)
-                                                  ? "Masukkan email yang benar"
-                                                  : null,
-                                              controller: _controllerEmail,
-                                              decoration: InputDecoration(
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFeead48),
-                                                  ),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFfade70),
-                                                  ),
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFfade70),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-
-                                  //TODO: Password
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Text(
-                                          "Password",
-                                          style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 27, 27, 27),
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 5),
-                                        child: SizedBox(
-                                          width: (MediaQuery.of(context)
-                                                  .size
-                                                  .width) *
-                                              0.4,
-                                          child: Form(
-                                            autovalidateMode: AutovalidateMode
-                                                .onUserInteraction,
-                                            child: TextFormField(
-                                              validator: (value) =>
-                                                  value != null &&
-                                                          value.length < 6
-                                                      ? "Password kurang dari 6"
-                                                      : null,
-                                              textAlignVertical:
-                                                  TextAlignVertical.center,
-                                              controller: _controllerPassword,
-                                              obscureText: _passwordVisible,
-                                              decoration: InputDecoration(
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFeead48),
-                                                  ),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFfade70),
-                                                  ),
-                                                ),
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  borderSide: BorderSide(
-                                                    color: Color(0xFFfade70),
-                                                  ),
-                                                ),
-                                                suffixIcon: IconButton(
-                                                  color: Color(0xFFeead48),
-                                                  onPressed: () {
-                                                    _passwordVisibility();
-                                                  },
-                                                  icon: Icon(_passwordVisible ==
-                                                          true
-                                                      ? Icons.visibility
-                                                      : Icons.visibility_off),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-
-                                  //TODO: Button Login
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          shape: StadiumBorder(),
-                                          primary: Color(0xFFeead49),
-                                          minimumSize: Size(
-                                              (MediaQuery.of(context)
-                                                      .size
-                                                      .width) *
-                                                  0.2,
-                                              35),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => MyApp(),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          'MASUK',
-                                          style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
-                                              color: Color(0xFFffffed),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w900,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: (MediaQuery.of(context)
-                                                .size
-                                                .width) *
-                                            0.4,
-                                      ),
-                                    ],
-                                  ),
-
-                                  SizedBox(
-                                    height: 25,
-                                  ),
-
-                                  //TODO: Sign Up
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Belum ada akun? ",
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(left: 40),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    //TODO: Email
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 20),
+                                          child: Text(
+                                            "Email",
                                             style: GoogleFonts.nunito(
-                                              textStyle: TextStyle(),
+                                              textStyle: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 27, 27, 27),
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold,
+                                              ),
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      RegisterPage(),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: SizedBox(
+                                            width: (MediaQuery.of(context)
+                                                    .size
+                                                    .width) *
+                                                0.4,
+                                            child: Form(
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
+                                              child: TextFormField(
+                                                validator: (value) => value !=
+                                                            null &&
+                                                        !EmailValidator
+                                                            .validate(value)
+                                                    ? "Masukkan email yang benar"
+                                                    : null,
+                                                controller: _controllerEmail,
+                                                decoration: InputDecoration(
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFeead48),
+                                                    ),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFfade70),
+                                                    ),
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFfade70),
+                                                    ),
+                                                  ),
                                                 ),
-                                              );
-                                            },
-                                            child: Text(
-                                              'Daftar ',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+
+                                    //TODO: Password
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 20),
+                                          child: Text(
+                                            "Password",
+                                            style: GoogleFonts.nunito(
+                                              textStyle: TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 27, 27, 27),
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 5),
+                                          child: SizedBox(
+                                            width: (MediaQuery.of(context)
+                                                    .size
+                                                    .width) *
+                                                0.4,
+                                            child: Form(
+                                              autovalidateMode: AutovalidateMode
+                                                  .onUserInteraction,
+                                              child: TextFormField(
+                                                validator: (value) => value !=
+                                                            null &&
+                                                        value.length < 6
+                                                    ? "Password kurang dari 6"
+                                                    : null,
+                                                textAlignVertical:
+                                                    TextAlignVertical.center,
+                                                controller: _controllerPassword,
+                                                obscureText: _passwordVisible,
+                                                decoration: InputDecoration(
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFeead48),
+                                                    ),
+                                                  ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFfade70),
+                                                    ),
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                    borderSide: BorderSide(
+                                                      color: Color(0xFFfade70),
+                                                    ),
+                                                  ),
+                                                  suffixIcon: IconButton(
+                                                    color: Color(0xFFeead48),
+                                                    onPressed: () {
+                                                      _passwordVisibility();
+                                                    },
+                                                    icon: Icon(
+                                                        _passwordVisible == true
+                                                            ? Icons.visibility
+                                                            : Icons
+                                                                .visibility_off),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+
+                                    //TODO: Button Login
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: StadiumBorder(),
+                                            primary: Color(0xFFeead49),
+                                            minimumSize: Size(
+                                                (MediaQuery.of(context)
+                                                        .size
+                                                        .width) *
+                                                    0.2,
+                                                35),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => MyApp(),
+                                              ),
+                                            );
+                                          },
+                                          child: Text(
+                                            'MASUK',
+                                            style: GoogleFonts.nunito(
+                                              textStyle: TextStyle(
+                                                color: Color(0xFFffffed),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: (MediaQuery.of(context)
+                                                  .size
+                                                  .width) *
+                                              0.4,
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(
+                                      height: 25,
+                                    ),
+
+                                    //TODO: Sign Up
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Belum ada akun? ",
                                               style: GoogleFonts.nunito(
-                                                textStyle: TextStyle(
-                                                  color: Color(0xFFeead49),
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w900,
+                                                textStyle: TextStyle(),
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegisterPage(),
+                                                  ),
+                                                );
+                                              },
+                                              child: Text(
+                                                'Daftar ',
+                                                style: GoogleFonts.nunito(
+                                                  textStyle: TextStyle(
+                                                    color: Color(0xFFeead49),
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w900,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Text(
-                                            "disini",
-                                            style: GoogleFonts.nunito(
-                                              textStyle: TextStyle(),
+                                            Text(
+                                              "disini",
+                                              style: GoogleFonts.nunito(
+                                                textStyle: TextStyle(),
+                                              ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        width: (MediaQuery.of(context)
-                                                .size
-                                                .width) *
-                                            0.4,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          width: (MediaQuery.of(context)
+                                                  .size
+                                                  .width) *
+                                              0.4,
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

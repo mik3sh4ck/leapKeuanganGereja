@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, TODO
+// ignore_for_file: prefer_const_constructors, TODO, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final _sidebarController = SidebarXController(selectedIndex: 0);
-  final divider = Divider(color: actionColor.withOpacity(0.5), height: 1);
 
   @override
   void dispose() {
@@ -70,35 +69,40 @@ class _MyAppState extends State<MyApp> {
       body: Row(
         children: [
           SidebarX(
+            animationDuration: Duration(milliseconds: 400),
             controller: _sidebarController,
             theme: SidebarXTheme(
-              margin: EdgeInsets.all(0),
+              // margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: canvasColor,
-                // borderRadius: BorderRadius.circular(15),
+                // borderRadius: BorderRadius.circular(20),
+                // borderRadius: BorderRadius.only(
+                //   topRight: Radius.circular(20),
+                //   bottomRight: Radius.circular(20),
+                // ),
               ),
-
               textStyle: TextStyle(
                 color: Color(0xFF80633d),
               ),
               selectedTextStyle: TextStyle(
                 color: Color(0xFF392f09),
               ),
-              selectedIconTheme: const IconThemeData(
+              selectedIconTheme: IconThemeData(
                 color: Color(0xFF392f09),
                 size: 20,
               ),
               itemTextPadding: EdgeInsets.only(left: 30),
               selectedItemTextPadding: EdgeInsets.only(left: 30),
               selectedItemDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                color: Color(0xFFFFFFFF).withOpacity(0.42),
+                borderRadius: BorderRadius.circular(30),
                 border: Border.all(color: Colors.transparent),
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFFFFFFF).withOpacity(0.42),
-                    Color(0xFFFFFFFF).withOpacity(0.42),
-                  ],
-                ),
+                // gradient: LinearGradient(
+                //   colors: [
+                //     Color(0xFFFFFFFF).withOpacity(0.42),
+                //     Color(0xFFFFFFFF).withOpacity(0.42),
+                //   ],
+                // ),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -117,7 +121,54 @@ class _MyAppState extends State<MyApp> {
                 color: canvasColor,
               ),
             ),
-            footerDivider: divider,
+            footerBuilder: (context, extended) {
+              return Align(
+                alignment:
+                    extended == true ? Alignment.centerLeft : Alignment.center,
+                child: FittedBox(
+                  alignment: Alignment.centerLeft,
+                  child: Align(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: 10, bottom: 10, left: extended == true ? 12 : 0),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => LoginPage(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.login_rounded,
+                              color: Color(0xFF80633d),
+                            ),
+                            Visibility(
+                              visible: extended == true ? true : false,
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 30),
+                                child: Text(
+                                  'Keluar',
+                                  style: TextStyle(
+                                    color: Color(0xFF80633d),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+            footerDivider:
+                Divider(color: actionColor.withOpacity(0.5), height: 1),
             headerBuilder: (context, extended) {
               return GestureDetector(
                 onTap: () => Navigator.push(
@@ -127,13 +178,13 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 child: FittedBox(
-                  fit: BoxFit.fill,
                   child: Padding(
-                    padding: EdgeInsets.all(400),
+                    padding: EdgeInsets.all(500),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(360),
                       child: Image.network(
-                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                      ),
                     ),
                   ),
                 ),
@@ -150,28 +201,28 @@ class _MyAppState extends State<MyApp> {
               ),
               SidebarXItem(
                 icon: Icons.people,
-                label: 'Member',
+                label: 'Anggota',
               ),
               SidebarXItem(
                 icon: Icons.inbox_rounded,
-                label: 'Donate',
+                label: 'Donasi',
               ),
               SidebarXItem(
-                icon: Icons.list_rounded,
-                label: 'Activity',
+                icon: Icons.event_note_rounded,
+                label: 'Kegiatan',
               ),
-              SidebarXItem(
-                onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                      (route) => false);
-                },
-                icon: Icons.logout_rounded,
-                label: 'Log Out',
-              ),
+              // SidebarXItem(
+              //   onTap: () {
+              //     Navigator.pushReplacement(
+              //       context,
+              //       MaterialPageRoute(
+              //         builder: (context) => LoginPage(),
+              //       ),
+              //     );
+              //   },
+              //   icon: Icons.logout_rounded,
+              //   label: 'Keluar',
+              // ),
             ],
           ),
           Expanded(
