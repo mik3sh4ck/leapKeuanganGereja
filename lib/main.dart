@@ -67,6 +67,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Row(
         children: [
           SidebarX(
@@ -76,11 +77,6 @@ class _MyAppState extends State<MyApp> {
               // margin: EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: canvasColor,
-                // borderRadius: BorderRadius.circular(20),
-                // borderRadius: BorderRadius.only(
-                //   topRight: Radius.circular(20),
-                //   bottomRight: Radius.circular(20),
-                // ),
               ),
               textStyle: TextStyle(
                 color: Color(0xFF80633d),
@@ -98,12 +94,6 @@ class _MyAppState extends State<MyApp> {
                 color: Color(0xFFFFFFFF).withOpacity(0.42),
                 borderRadius: BorderRadius.circular(30),
                 border: Border.all(color: Colors.transparent),
-                // gradient: LinearGradient(
-                //   colors: [
-                //     Color(0xFFFFFFFF).withOpacity(0.42),
-                //     Color(0xFFFFFFFF).withOpacity(0.42),
-                //   ],
-                // ),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.1),
@@ -145,8 +135,9 @@ class _MyAppState extends State<MyApp> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
-                              Icons.login_rounded,
+                              Icons.logout_rounded,
                               color: Color(0xFF80633d),
+                              size: 21,
                             ),
                             Visibility(
                               visible: extended == true ? true : false,
@@ -168,8 +159,10 @@ class _MyAppState extends State<MyApp> {
                 ),
               );
             },
+            headerDivider:
+                Divider(color: Colors.black.withOpacity(0.1), height: 1),
             footerDivider:
-                Divider(color: actionColor.withOpacity(0.5), height: 1),
+                Divider(color: Colors.black.withOpacity(0.1), height: 1),
             headerBuilder: (context, extended) {
               return GestureDetector(
                 onTap: () => Navigator.push(
@@ -178,14 +171,14 @@ class _MyAppState extends State<MyApp> {
                     builder: (context) => ProfilePage(),
                   ),
                 ),
-                child: FittedBox(
-                  child: Padding(
-                    padding: EdgeInsets.all(500),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(360),
-                      child: Image.asset(
-                        'lib/assets/images/defprofileimg.png',
-                      ),
+                child: Container(
+                  margin: EdgeInsets.only(top: 15, bottom: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(360),
+                    child: Image.asset(
+                      'lib/assets/images/defprofileimg.png',
+                      width: 40,
+                      height: 40,
                     ),
                   ),
                 ),
@@ -212,18 +205,6 @@ class _MyAppState extends State<MyApp> {
                 icon: Icons.event_note_rounded,
                 label: 'Kegiatan',
               ),
-              // SidebarXItem(
-              //   onTap: () {
-              //     Navigator.pushReplacement(
-              //       context,
-              //       MaterialPageRoute(
-              //         builder: (context) => LoginPage(),
-              //       ),
-              //     );
-              //   },
-              //   icon: Icons.logout_rounded,
-              //   label: 'Keluar',
-              // ),
             ],
           ),
           Expanded(
