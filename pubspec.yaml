@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.5 <3.0.0"
+  sdk: ">=2.16.5 <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,8 +36,11 @@ dependencies:
   sidebarx: ^0.6.0
   email_validator: ^2.0.1
   google_fonts: ^3.0.1
-  dropdown_search: ^5.0.2
+  dropdown_search: ^3.0.1
   auto_size_text: ^3.0.0
+  table_calendar: ^3.0.6
+  adaptive_scrollbar: ^2.1.2
+  image_picker: ^0.8.3+2
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  fl_chart: ^0.55.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -70,6 +74,7 @@ flutter:
     - lib/assets/images/defprofileimg.png
     - lib/assets/images/loginbgimg.png
     - lib/assets/images/createrole.png
+    - lib/assets/images/a.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -93,6 +98,11 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: lib/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf
+        - asset: lib/fonts/Nunito/Nunito-Italic-VariableFont_wght.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

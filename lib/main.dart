@@ -3,8 +3,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:keuangan_gereja/pages/donation.dart';
-import 'package:keuangan_gereja/pages/home.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:keuangan_gereja/pages/Dashboard.dart';
+import 'package:keuangan_gereja/pages/aktifitas.dart';
+import 'package:keuangan_gereja/pages/donasi.dart';
 import 'package:keuangan_gereja/pages/inputkeuangan.dart';
 import 'package:keuangan_gereja/pages/login.dart';
 import 'package:keuangan_gereja/pages/member.dart';
@@ -249,17 +251,26 @@ class __ScreenRouteState extends State<_ScreenRoute> {
       builder: (context, child) {
         switch (widget.controller.selectedIndex) {
           case 0:
-            return HomePage();
+            return Dashboard();
           case 1:
             return InputKeuanganPage();
           case 2:
             return MemberPage();
           case 3:
-            return DonationPage();
-          // case 4:
-          //   return
+            return Donasi();
+          case 4:
+            return AktifitasPage();
           default:
-            return Text('Unknown Page');
+            return Text(
+              'Coming Soon',
+              style: GoogleFonts.nunito(
+                textStyle: TextStyle(
+                  fontSize: 32,
+                  color: Colors.black.withOpacity(0.5),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            );
         }
       },
     );
