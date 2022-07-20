@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, TODO, prefer_const_literals_to_create_immutables, non_constant_identifier_names
 
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+String tempRole = '';
 
 class MemberPage extends StatefulWidget {
   const MemberPage({Key? key}) : super(key: key);
@@ -12,6 +15,20 @@ class MemberPage extends StatefulWidget {
 
 class _MemberPageState extends State<MemberPage> {
   final _controllerPageView = PageController();
+  final _controllerPageView1 = PageController();
+
+  final roleList = ['User', 'Ketua', 'Pengurus'];
+  final memberList = [
+    ['Denny', 'Ketua'],
+    ['Michael', 'Pengurus'],
+    ['Kendrew', 'Pengurus'],
+    ['Kevin', 'Pengurus'],
+    ['Andi', 'User'],
+    ['Dimas', 'user'],
+    ['Sandro', 'User'],
+    ['Lupita', 'User'],
+  ];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -22,6 +39,7 @@ class _MemberPageState extends State<MemberPage> {
   void dispose() {
     // TODO: implement dispose
     _controllerPageView.dispose();
+    _controllerPageView1.dispose();
     super.dispose();
   }
 
@@ -33,8 +51,21 @@ class _MemberPageState extends State<MemberPage> {
         controller: _controllerPageView,
         physics: NeverScrollableScrollPhysics(),
         children: [
-          MemberList(
-            controllerPageView: _controllerPageView,
+          PageView(
+            controller: _controllerPageView1,
+            children: [
+              MemberList(
+                controllerPageView: _controllerPageView,
+                controllerPageView1: _controllerPageView1,
+                memberList: memberList,
+                roleList: roleList,
+              ),
+              // UbahRoles(
+              //   controllerPageView: _controllerPageView1,
+              //   memberList: memberList,
+              //   roleList: roleList,
+              // )
+            ],
           ),
           CreateRole(
             controllerPageView: _controllerPageView,
@@ -48,7 +79,15 @@ class _MemberPageState extends State<MemberPage> {
 //TODO: MemberListPages
 class MemberList extends StatefulWidget {
   final PageController controllerPageView;
-  const MemberList({Key? key, required this.controllerPageView})
+  final PageController controllerPageView1;
+  final List<String> roleList;
+  final List<List<String>> memberList;
+  const MemberList(
+      {Key? key,
+      required this.controllerPageView,
+      required this.controllerPageView1,
+      required this.roleList,
+      required this.memberList})
       : super(key: key);
 
   @override
@@ -57,20 +96,7 @@ class MemberList extends StatefulWidget {
 
 //TODO: Member List
 class _MemberListState extends State<MemberList> {
-  final roleList = ['User', 'Ketua', 'Pengurus'];
-  final memberList = [
-    ['Denny', 'Ketua'],
-    ['Michael', 'Pengurus'],
-    ['Kendrew', 'Pengurus'],
-    ['Kevin', 'Pengurus'],
-    ['Andi', 'User'],
-    ['Dimas', 'user'],
-    ['Sandro', 'User'],
-    ['Lupita', 'User'],
-  ];
-
   final _controllerSearch = TextEditingController();
-  String tempRole = '';
 
   @override
   void initState() {
@@ -85,13 +111,13 @@ class _MemberListState extends State<MemberList> {
   }
 
   String memberRoleAssign(int index) {
-    for (int i = 0; i < roleList.length; i++) {
-      if (roleList[i] == memberList[index][1]) {
-        tempRole = roleList[i];
-        return roleList[i];
+    for (int i = 0; i < widget.roleList.length; i++) {
+      if (widget.roleList[i] == widget.memberList[index][1]) {
+        tempRole = widget.roleList[i];
+        return widget.roleList[i];
       }
     }
-    return roleList[0];
+    return widget.roleList[0];
   }
 
   @override
@@ -184,7 +210,7 @@ class _MemberListState extends State<MemberList> {
                           onPressed: () {
                             if (mounted) {
                               setState(() {
-                                widget.controllerPageView.nextPage(
+                                widget.controllerPageView.animateToPage(1,
                                     duration: Duration(milliseconds: 700),
                                     curve: Curves.easeIn);
                               });
@@ -255,7 +281,7 @@ class _MemberListState extends State<MemberList> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                memberList[index][0],
+                                widget.memberList[index][0],
                                 style: GoogleFonts.nunito(
                                   textStyle: TextStyle(
                                     color: Colors.black.withOpacity(1),
@@ -265,7 +291,7 @@ class _MemberListState extends State<MemberList> {
                                 ),
                               ),
                               Text(
-                                "Role: ${memberList[index][1]}",
+                                "Role: ${widget.memberList[index][1]}",
                                 style: GoogleFonts.nunito(
                                   textStyle: TextStyle(
                                     color: Colors.black.withOpacity(0.5),
@@ -279,127 +305,121 @@ class _MemberListState extends State<MemberList> {
                           //TODO: Assign Role
                           TextButton(
                             onPressed: () {
-                              showDialog(
-                                barrierDismissible: true,
+                              // widget.controllerPageView1.animateToPage(1,
+                              //     duration: Duration(milliseconds: 700),
+                              //     curve: Curves.easeIn);
+                              showDialog<void>(
                                 context: context,
-                                builder: (context) => Dialog(
-                                  shape: CircleBorder(),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                    ),
-                                    padding: EdgeInsets.all(24),
-                                    width: (MediaQuery.of(context).size.width) *
-                                        0.4,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          memberList[index][0],
-                                          style: GoogleFonts.nunito(
-                                            textStyle: TextStyle(
-                                              color:
-                                                  Colors.black.withOpacity(1),
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.w900,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return Scaffold(
+                                    body: Container(
+                                      padding: EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            widget.memberList[index][0]
+                                                .toString(),
+                                            style: GoogleFonts.nunito(
+                                              textStyle: TextStyle(
+                                                color:
+                                                    Colors.black.withOpacity(1),
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w900,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(24),
-                                          // child: DropdownSearch(
-                                          //   autoValidateMode: AutovalidateMode
-                                          //       .onUserInteraction,
-                                          //   dropdownDecoratorProps:
-                                          //       DropDownDecoratorProps(
-                                          //     dropdownSearchDecoration:
-                                          //         InputDecoration(
-                                          //       filled: true,
-                                          //       fillColor: Color(0xFFffde59),
-                                          //       border: OutlineInputBorder(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(
-                                          //                   15),
-                                          //           borderSide:
-                                          //               BorderSide.none),
-                                          //     ),
-                                          //   ),
-                                          //   items: roleList,
-                                          //   onChanged: (e) {
-                                          //     if (mounted) {
-                                          //       setState(() {});
-                                          //       tempRole = e.toString();
-                                          //     }
-                                          //   },
-                                          //   selectedItem:
-                                          //       memberRoleAssign(index),
-                                          // ),
-                                        ),
-                                        Expanded(
-                                          child: Container(),
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            ElevatedButton(
-                                              style: TextButton.styleFrom(
-                                                primary: Colors.white,
-                                                backgroundColor:
-                                                    Color(0xFFf9ab27),
-                                              ),
-                                              child: Text(
-                                                'Batalkan',
-                                                style: GoogleFonts.nunito(
-                                                  textStyle: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
+                                          Container(
+                                            padding: EdgeInsets.all(24),
+                                            child: DropdownSearch<String>(
+                                              mode: Mode.MENU,
+                                              showSelectedItems: true,
+                                              items: widget.roleList,
+                                              onChanged: (e) {
+                                                setState(() {
+                                                  tempRole = e.toString();
+                                                });
+                                              },
+                                              selectedItem:
+                                                  memberRoleAssign(index),
+                                              dropdownSearchDecoration:
+                                                  InputDecoration(
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
                                                 ),
                                               ),
-                                              onPressed: () {
-                                                if (mounted) {
-                                                  setState(() {
-                                                    tempRole = '';
-                                                  });
-                                                }
-                                                Navigator.of(context).pop();
-                                              },
                                             ),
-                                            ElevatedButton(
-                                              style: TextButton.styleFrom(
-                                                primary: Colors.white,
-                                                backgroundColor:
-                                                    Color(0xFFf9ab27),
-                                              ),
-                                              onPressed: () {
-                                                if (mounted) {
-                                                  setState(() {
-                                                    memberList[index][1] =
-                                                        tempRole;
-                                                    tempRole = '';
-                                                  });
-                                                }
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text(
-                                                'Simpan',
-                                                style: GoogleFonts.nunito(
-                                                  textStyle: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.w700,
+                                          ),
+                                          Expanded(
+                                            child: Container(),
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              ElevatedButton(
+                                                style: TextButton.styleFrom(
+                                                  primary: Colors.white,
+                                                  backgroundColor:
+                                                      Color(0xFFf9ab27),
+                                                ),
+                                                child: Text(
+                                                  'Batalkan',
+                                                  style: GoogleFonts.nunito(
+                                                    textStyle: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
                                                   ),
                                                 ),
+                                                onPressed: () {
+                                                  if (mounted) {
+                                                    setState(() {
+                                                      tempRole = '';
+                                                    });
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
                                               ),
-                                            )
-                                          ],
-                                        )
-                                      ],
+                                              ElevatedButton(
+                                                style: TextButton.styleFrom(
+                                                  primary: Colors.white,
+                                                  backgroundColor:
+                                                      Color(0xFFf9ab27),
+                                                ),
+                                                onPressed: () {
+                                                  if (mounted) {
+                                                    setState(() {
+                                                      widget.memberList[index]
+                                                          [1] = tempRole;
+                                                      tempRole = '';
+                                                      print('hello');
+                                                    });
+                                                  }
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'Simpan',
+                                                  style: GoogleFonts.nunito(
+                                                    textStyle: TextStyle(
+                                                      fontSize: 20,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                               );
                             },
                             child: Text(
@@ -442,7 +462,7 @@ class _MemberListState extends State<MemberList> {
                                       ),
                                     ),
                                     Text(
-                                      '${memberList[index][0]} dari anggota?',
+                                      '${widget.memberList[index][0]} dari anggota?',
                                       style: GoogleFonts.nunito(
                                         textStyle: TextStyle(
                                           color: Color(0xFF000000),
@@ -474,7 +494,7 @@ class _MemberListState extends State<MemberList> {
                                   onPressed: () {
                                     if (mounted) {
                                       setState(() {
-                                        memberList.removeAt(index);
+                                        widget.memberList.removeAt(index);
                                       });
                                     }
                                     Navigator.pop(context);
@@ -500,7 +520,7 @@ class _MemberListState extends State<MemberList> {
                       color: Colors.transparent,
                     );
                   },
-                  itemCount: memberList.length),
+                  itemCount: widget.memberList.length),
             ),
           ),
         ],
@@ -568,7 +588,7 @@ class _CreateRoleState extends State<CreateRole> {
                         onPressed: () {
                           if (mounted) {
                             setState(() {
-                              widget.controllerPageView.previousPage(
+                              widget.controllerPageView.animateToPage(0,
                                   duration: Duration(milliseconds: 700),
                                   curve: Curves.easeOut);
                             });
@@ -770,5 +790,38 @@ class _CreateRoleState extends State<CreateRole> {
   }
 }
 
+// class UbahRoles extends StatefulWidget {
+//   final int index;
+//   final List<String> roleList;
+//   final List<List<String>> memberList;
+//   const UbahRoles(
+//       {Key? key,
+//       required this.index,
+//       required this.roleList,
+//       required this.memberList})
+//       : super(key: key);
 
+//   @override
+//   State<UbahRoles> createState() => _UbahRolesState();
+// }
 
+// class _UbahRolesState extends State<UbahRoles> {
+//   @override
+//   void initState() {
+//     // TODO: implement initState
+//     super.initState();
+//   }
+
+//   @override
+//   void dispose() {
+//     // TODO: implement dispose
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: 
+//     );
+//   }
+// }

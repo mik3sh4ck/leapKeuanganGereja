@@ -466,9 +466,7 @@ class _BuatAktifitasPageState extends State<BuatAktifitasPage> {
                     ],
                   ),
                   Column(
-                    children: [
-                      TextField(),
-                    ],
+                    children: [],
                   ),
                 ],
               ),
