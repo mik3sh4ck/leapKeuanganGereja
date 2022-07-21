@@ -188,8 +188,9 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
       builder: (BuildContext context) {
         return SingleChildScrollView(
           child: AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             titlePadding: EdgeInsets.all(0),
             contentPadding: EdgeInsets.all(0),
             title: Container(
@@ -212,18 +213,16 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                     ),
                   ),
                   Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                          onPressed: () {
-                            jumlahinput.clear();
-                            descinput.clear();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => InputKeuanganPage()),
-                            );
-                          },
-                          icon: Icon(Icons.cancel_outlined, size: 36)))
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () {
+                        jumlahinput.clear();
+                        descinput.clear();
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.cancel_outlined, size: 36),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -239,23 +238,24 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                       child: Column(
                         children: <Widget>[
                           TabBar(
-                              controller: _tabController,
-                              labelColor: Colors.black,
-                              labelStyle: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 20),
-                              unselectedLabelColor: Colors.grey,
-                              unselectedLabelStyle: TextStyle(
-                                  fontWeight: FontWeight.normal, fontSize: 18),
-                              indicatorSize: TabBarIndicatorSize.label,
-                              indicatorColor: Colors.transparent,
-                              tabs: [
-                                Tab(
-                                  child: Text("Pemasukan Gereja"),
-                                ),
-                                Tab(
-                                  child: Text("Pengeluaran Gereja"),
-                                )
-                              ]),
+                            controller: _tabController,
+                            labelColor: Colors.black,
+                            labelStyle: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                            unselectedLabelColor: Colors.grey,
+                            unselectedLabelStyle: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 18),
+                            indicatorSize: TabBarIndicatorSize.label,
+                            indicatorColor: Colors.transparent,
+                            tabs: [
+                              Tab(
+                                child: Text("Pemasukan Gereja"),
+                              ),
+                              Tab(
+                                child: Text("Pengeluaran Gereja"),
+                              )
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -290,9 +290,10 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                 onChanged: print,
                                 selectedItem: "Pilih Kategori",
                                 dropdownSearchDecoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15))),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                ),
                               ),
                             ),
                             _fungsi(context)
@@ -495,22 +496,24 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                 child: ElevatedButton(
                                   onPressed: () {},
                                   style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              Colors.amber),
-                                      padding: MaterialStateProperty.all(
-                                          EdgeInsets.only(
-                                              top: 10,
-                                              bottom: 10,
-                                              left: 20,
-                                              right: 20)),
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.amber),
+                                    padding: MaterialStateProperty.all(
+                                        EdgeInsets.only(
+                                            top: 10,
+                                            bottom: 10,
+                                            left: 20,
+                                            right: 20)),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                      RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(10),
-                                      )),
-                                      textStyle: MaterialStateProperty.all(
-                                          TextStyle(fontSize: 10))),
+                                      ),
+                                    ),
+                                    textStyle: MaterialStateProperty.all(
+                                      TextStyle(fontSize: 10),
+                                    ),
+                                  ),
                                   child: const Text(
                                     'Lihat Transaksi',
                                     style: TextStyle(
@@ -529,12 +532,13 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   gradient: LinearGradient(
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: [
-                                        Color(0xFFFFE16B),
-                                        Color(0xfffff6d2),
-                                      ]),
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      Color(0xFFFFE16B),
+                                      Color(0xfffff6d2),
+                                    ],
+                                  ),
                                   boxShadow: [
                                     BoxShadow(
                                         color: Colors.black, spreadRadius: 1),
@@ -573,12 +577,13 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(15),
                                   gradient: LinearGradient(
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter,
-                                      colors: [
-                                        Color(0xFFFFE16B),
-                                        Color(0xfffff6d2),
-                                      ]),
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter,
+                                    colors: [
+                                      Color(0xFFFFE16B),
+                                      Color(0xfffff6d2),
+                                    ],
+                                  ),
                                   boxShadow: [
                                     BoxShadow(
                                         color: Colors.black, spreadRadius: 1),
@@ -620,12 +625,14 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                     ),
                                   ),
                                   Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: IconButton(
-                                          onPressed: () {
-                                            _showMyDialog();
-                                          },
-                                          icon: Icon(Icons.add, size: 36)))
+                                    alignment: Alignment.bottomLeft,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _showMyDialog();
+                                      },
+                                      icon: Icon(Icons.add, size: 36),
+                                    ),
+                                  )
                                 ],
                               ),
                               Container(
@@ -738,12 +745,14 @@ class _InputKeuanganPageState extends State<InputKeuanganPage>
                                     ),
                                   ),
                                   Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child: IconButton(
-                                          onPressed: () {
-                                            _showMyDialog();
-                                          },
-                                          icon: Icon(Icons.add, size: 36)))
+                                    alignment: Alignment.bottomLeft,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        _showMyDialog();
+                                      },
+                                      icon: Icon(Icons.add, size: 36),
+                                    ),
+                                  )
                                 ],
                               ),
                               Container(

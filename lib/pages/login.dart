@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                                         Padding(
                                           padding: EdgeInsets.only(left: 20),
                                           child: Text(
-                                            "Email",
+                                            "Nama Pengguna",
                                             style: GoogleFonts.nunito(
                                               textStyle: TextStyle(
                                                 color: Color.fromARGB(
@@ -164,14 +164,14 @@ class _LoginPageState extends State<LoginPage> {
                                                 controller: _controllerEmail,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -188,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                 ),
@@ -211,7 +211,7 @@ class _LoginPageState extends State<LoginPage> {
                                         Padding(
                                           padding: EdgeInsets.only(left: 20),
                                           child: Text(
-                                            "Password",
+                                            "Kata Sandi",
                                             style: GoogleFonts.nunito(
                                               textStyle: TextStyle(
                                                 color: Color.fromARGB(
@@ -244,14 +244,14 @@ class _LoginPageState extends State<LoginPage> {
                                                 obscureText: _passwordVisible,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -260,7 +260,7 @@ class _LoginPageState extends State<LoginPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   suffixIcon: IconButton(
@@ -350,7 +350,7 @@ class _LoginPageState extends State<LoginPage> {
                                         Row(
                                           children: [
                                             Text(
-                                              "Belum ada akun? ",
+                                              "Tidak memiliki akun? ",
                                               style: GoogleFonts.nunito(
                                                 textStyle: TextStyle(),
                                               ),

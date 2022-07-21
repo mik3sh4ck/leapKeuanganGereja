@@ -181,19 +181,19 @@ class _MemberListState extends State<MemberList> {
                               focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withOpacity(0.5),
                                 ),
                               ),
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withOpacity(0.5),
                                 ),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30),
                                 borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withOpacity(0.5),
                                 ),
                               ),
                             ),
@@ -206,6 +206,9 @@ class _MemberListState extends State<MemberList> {
                           style: TextButton.styleFrom(
                             primary: Colors.white,
                             backgroundColor: Color(0xFFf9ab27),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40),
+                            ),
                           ),
                           onPressed: () {
                             if (mounted) {
@@ -260,10 +263,10 @@ class _MemberListState extends State<MemberList> {
                   itemBuilder: (BuildContext context, index) {
                     return ListTile(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(40),
                         side: BorderSide(
                           width: 1,
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withOpacity(0.5),
                         ),
                       ),
                       tileColor: Color(0xFFfef5e5),
@@ -674,7 +677,7 @@ class _CreateRoleState extends State<CreateRole> {
                                           ),
                                           enabledBorder: OutlineInputBorder(
                                             borderRadius:
-                                                BorderRadius.circular(10),
+                                                BorderRadius.circular(40),
                                             borderSide: BorderSide(
                                               color:
                                                   Colors.black.withOpacity(0.2),
@@ -720,7 +723,7 @@ class _CreateRoleState extends State<CreateRole> {
                                                 10, 10, 10, 10),
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(10),
+                                                  BorderRadius.circular(40),
                                               border: Border.all(
                                                 color: Colors.black
                                                     .withOpacity(0.2),
@@ -758,16 +761,23 @@ class _CreateRoleState extends State<CreateRole> {
                                       elevation: 2,
                                       primary: Colors.white,
                                       backgroundColor: Color(0xFFf9ab27),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
                                     ),
                                     onPressed: () {
                                       setState(() {});
                                     },
-                                    child: Text(
-                                      'Buat Role',
-                                      style: GoogleFonts.nunito(
-                                        textStyle: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w700,
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 10, right: 10),
+                                      child: Text(
+                                        'SIMPAN',
+                                        style: GoogleFonts.nunito(
+                                          textStyle: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ),

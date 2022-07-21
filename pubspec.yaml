@@ -75,6 +75,7 @@ flutter:
     - lib/assets/images/loginbgimg.png
     - lib/assets/images/createrole.png
     - lib/assets/images/a.png
+    - lib/assets/images/createaktifitas.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -92,7 +92,7 @@ class _ListAktifitasPageState extends State<ListAktifitasPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Aktifitas',
+                  'Kegiatan',
                   style: GoogleFonts.nunito(
                     textStyle: TextStyle(
                       color: Color(0xFF000000),
@@ -381,99 +381,478 @@ class BuatAktifitasPage extends StatefulWidget {
 }
 
 class _BuatAktifitasPageState extends State<BuatAktifitasPage> {
+  final _controllerNamaKegiatan = TextEditingController();
+  final _controllerPenanggungjawab1 = TextEditingController();
+  final _controllerPenanggungjawab2 = TextEditingController();
+  final _controllerJenisKebutuhan = TextEditingController();
+  final _controllerSaldo = TextEditingController();
+  final _controllerKeterangan = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _controllerNamaKegiatan.dispose();
+    _controllerPenanggungjawab1.dispose();
+    _controllerPenanggungjawab2.dispose();
+    _controllerJenisKebutuhan.dispose();
+    _controllerSaldo.dispose();
+    _controllerKeterangan.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(color: Colors.white),
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.fromLTRB(10, 25, 25, 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        widget.controllerPageView.animateToPage(0,
-                            duration: Duration(milliseconds: 700),
-                            curve: Curves.easeOut);
-                      },
-                      icon: Icon(Icons.arrow_back_ios_rounded),
-                    ),
-                    SizedBox(
-                      width: 25,
-                    ),
-                    Text(
-                      'Buat Aktifitas',
-                      style: GoogleFonts.nunito(
-                        textStyle: TextStyle(
-                          color: Color(0xFF000000),
-                          fontSize: 26,
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 25,
-                ),
-                ElevatedButton(
-                  style: TextButton.styleFrom(
-                    elevation: 0,
-                    primary: Colors.transparent,
-                    backgroundColor: Colors.transparent,
-                  ),
-                  onPressed: null,
-                  onLongPress: null,
-                  onHover: null,
-                  child: Text(
-                    '',
-                  ),
-                ),
-              ],
+    return Container(
+      padding: EdgeInsets.all(0),
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      child: Stack(
+        children: [
+          Positioned(
+            right: 30,
+            bottom: 30,
+            child: Image(
+              width: (MediaQuery.of(context).size.width) * 0.33,
+              image: AssetImage(
+                'lib/assets/images/createaktifitas.png',
+              ),
             ),
           ),
-        ),
-        Divider(
-          height: 1,
-          color: Colors.black.withOpacity(0.2),
-        ),
-
-        //TODO: Buat Aktifitas page
-        Container(
-          padding: EdgeInsets.all(16),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              padding: EdgeInsets.fromLTRB(16, 25, 16, 16),
+              width: (MediaQuery.of(context).size.width),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      IconButton(
+                        onPressed: () {
+                          widget.controllerPageView.animateToPage(0,
+                              duration: Duration(milliseconds: 700),
+                              curve: Curves.easeOut);
+                        },
+                        icon: Icon(Icons.arrow_back_ios_rounded),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
                       Text(
-                        'Kode Aktifitas : ',
+                        'Buat Kegiatan',
                         style: GoogleFonts.nunito(
                           textStyle: TextStyle(
-                            color: Color(0xFF000000),
-                            fontSize: 14,
+                            color: Colors.black,
+                            fontSize: 26,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  Column(
-                    children: [],
+                  SizedBox(
+                    height: 30,
+                  ),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Nama Kegiatan',
+                              style: GoogleFonts.nunito(
+                                textStyle: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: (MediaQuery.of(context).size.width) * 0.50,
+                              child: TextField(
+                                controller: _controllerNamaKegiatan,
+                                decoration: InputDecoration(
+                                  filled: true,
+                                  fillColor: Color(0xFFfef5e5),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(
+                                      color: Color(0xFF000000).withOpacity(0.5),
+                                    ),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(
+                                      color: Color(0xFF000000).withOpacity(0.5),
+                                    ),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide(
+                                      color: Color(0xFF000000).withOpacity(0.5),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Penanggungjawab 1',
+                                      style: GoogleFonts.nunito(
+                                        textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          (MediaQuery.of(context).size.width) *
+                                              0.23,
+                                      child: TextField(
+                                        controller: _controllerPenanggungjawab1,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Color(0xFFfef5e5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: (MediaQuery.of(context).size.width) *
+                                      0.04,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Penanggungjawab 2',
+                                      style: GoogleFonts.nunito(
+                                        textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          (MediaQuery.of(context).size.width) *
+                                              0.23,
+                                      child: TextField(
+                                        controller: _controllerPenanggungjawab2,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Color(0xFFfef5e5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Jenis Kebutuhan',
+                                      style: GoogleFonts.nunito(
+                                        textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          (MediaQuery.of(context).size.width) *
+                                              0.23,
+                                      child: TextField(
+                                        controller: _controllerJenisKebutuhan,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Color(0xFFfef5e5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    FittedBox(
+                                      child: Text(
+                                        'Saldo',
+                                        style: GoogleFonts.nunito(
+                                          textStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          (MediaQuery.of(context).size.width) *
+                                              0.23,
+                                      child: TextField(
+                                        controller: _controllerSaldo,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Color(0xFFfef5e5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  width: (MediaQuery.of(context).size.width) *
+                                      0.04,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Keterangan',
+                                      style: GoogleFonts.nunito(
+                                        textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      width:
+                                          (MediaQuery.of(context).size.width) *
+                                              0.23,
+                                      child: TextField(
+                                        controller: _controllerKeterangan,
+                                        maxLines: 7,
+                                        decoration: InputDecoration(
+                                          filled: true,
+                                          fillColor: Color(0xFFfef5e5),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF000000)
+                                                  .withOpacity(0.5),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: (MediaQuery.of(context).size.width) * 0.5,
+                              child: Column(
+                                children: [
+                                  ElevatedButton(
+                                    style: TextButton.styleFrom(
+                                      primary: Colors.white,
+                                      backgroundColor: Color(0xFFf9ab27),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      if (mounted) {
+                                        _controllerNamaKegiatan.clear();
+                                        _controllerPenanggungjawab1.clear();
+                                        _controllerPenanggungjawab2.clear();
+                                        _controllerJenisKebutuhan.clear();
+                                        _controllerSaldo.clear();
+                                        _controllerKeterangan.clear();
+                                      }
+                                      widget.controllerPageView.animateToPage(0,
+                                          duration: Duration(milliseconds: 700),
+                                          curve: Curves.easeOut);
+                                    },
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 20, right: 20),
+                                      child: Text(
+                                        'Buat',
+                                        style: GoogleFonts.nunito(
+                                          textStyle: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

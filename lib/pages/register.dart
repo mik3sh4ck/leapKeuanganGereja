@@ -165,14 +165,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 controller: _controllerUsername,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -181,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -189,7 +189,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                 ),
@@ -245,14 +245,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 obscureText: _passwordVisible,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -261,7 +261,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -269,7 +269,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   suffixIcon: IconButton(
@@ -340,14 +340,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 controller: _controllerEmail,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -356,7 +356,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -364,7 +364,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                 ),
@@ -424,14 +424,14 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 obscureText: _passwordVisible,
                                                 decoration: InputDecoration(
                                                   filled: true,
-                                                  fillColor: Colors.white,
+                                                  fillColor: Color(0xFFe6e6e6),
                                                   focusedBorder:
                                                       OutlineInputBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFeead48),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   enabledBorder:
@@ -440,7 +440,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   border: OutlineInputBorder(
@@ -448,7 +448,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                                         BorderRadius.circular(
                                                             30),
                                                     borderSide: BorderSide(
-                                                      color: Color(0xFFfade70),
+                                                      color: Colors.transparent,
                                                     ),
                                                   ),
                                                   suffixIcon: IconButton(
@@ -523,26 +523,26 @@ class _RegisterPageState extends State<RegisterPage> {
                                             controller: _controllerPhone,
                                             decoration: InputDecoration(
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0xFFe6e6e6),
                                               focusedBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 borderSide: BorderSide(
-                                                  color: Color(0xFFeead48),
+                                                  color: Colors.transparent,
                                                 ),
                                               ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 borderSide: BorderSide(
-                                                  color: Color(0xFFfade70),
+                                                  color: Colors.transparent,
                                                 ),
                                               ),
                                               border: OutlineInputBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 borderSide: BorderSide(
-                                                  color: Color(0xFFfade70),
+                                                  color: Colors.transparent,
                                                 ),
                                               ),
                                             ),
@@ -566,7 +566,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                         shape: StadiumBorder(),
                                         primary: Color(0xFFeead49),
                                         minimumSize: Size(
-                                            MediaQuery.of(context).size.width,
+                                            (MediaQuery.of(context).size.width) * 0.2,
                                             35),
                                       ),
                                       onPressed: () {
