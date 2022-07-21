@@ -20,15 +20,13 @@ class _DashboardState extends State<Dashboard> {
         child: Row(
           children: [
             Expanded(
-              flex: 1,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(15.0),
                 child: FittedBox(
                   child: Row(
                     children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                             padding: EdgeInsets.all(12),
@@ -55,21 +53,13 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ),
                           Container(
-                            padding: EdgeInsets.all(12),
                             child: Column(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(12),
                                   child: Column(
                                     children: [
                                       CardNews(),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
                                       CardNews(),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
                                       CardNews(),
                                     ],
                                   ),

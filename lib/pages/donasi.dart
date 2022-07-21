@@ -19,84 +19,80 @@ class _DonasiState extends State<Donasi> {
       body: Container(
         padding: EdgeInsets.all(15.0),
         child: Column(children: [
-          Expanded(
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Text(
-                "Donasi",
-                style: GoogleFonts.nunito(
-                  textStyle: TextStyle(
-                    color: Color(0xFF000000),
-                    fontSize: 36,
-                    fontWeight: FontWeight.w800,
-                  ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              "Donasi",
+              style: GoogleFonts.nunito(
+                textStyle: TextStyle(
+                  color: Color(0xFF000000),
+                  fontSize: 36,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              padding: EdgeInsets.all(15.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: ButtonDonasi(
-                      text: "Detail Donasi Aktif",
-                    ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ButtonDonasi(
+                    text: "Detail Donasi Aktif",
                   ),
-                  SizedBox(
-                    width: 10,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Expanded(
+                  child: ButtonDonasi(
+                    text: "Riwayat Aksi Donasi",
                   ),
-                  Expanded(
-                    child: ButtonDonasi(
-                      text: "Riwayat Aksi Donasi",
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(),
-                  ),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return TambahDonasi();
-                            },
-                          ),
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15.0),
-                          ),
-                          border: Border.all(color: Colors.black, width: 1),
-                          color: Colors.yellow,
+                ),
+                Expanded(
+                  child: Container(),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return TambahDonasi();
+                          },
                         ),
-                        child: Wrap(
-                          direction: Axis.horizontal,
-                          crossAxisAlignment: WrapCrossAlignment.center,
-                          children: [
-                            Icon(Icons.add),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Text('tambah donasi'),
-                          ],
+                      );
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(2.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15.0),
                         ),
+                        border: Border.all(color: Colors.black, width: 1),
+                        color: Colors.yellow,
+                      ),
+                      child: Wrap(
+                        direction: Axis.horizontal,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          Icon(Icons.add),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text('tambah donasi'),
+                        ],
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           Expanded(
-            flex: 7,
+            flex: 3,
             child: Container(
               padding: EdgeInsets.all(15.0),
               width: MediaQuery.of(context).size.width,
@@ -172,7 +168,7 @@ class ButtonDonasi extends StatelessWidget {
         print("mencet tombol $text");
       }),
       child: Container(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(5.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(15.0)),
           border: Border.all(color: Colors.black, width: 1),
